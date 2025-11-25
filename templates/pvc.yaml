@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "webhook-app.fullname" . }}-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.pvc.size }}
+  storageClassName: {{ .Values.pvc.storageClass | quote }}

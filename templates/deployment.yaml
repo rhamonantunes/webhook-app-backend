@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "webhook-app.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "webhook-app.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "webhook-app.name" . }}
+    spec:
+      containers:
+        - name: webhook-app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 5000
+          env:
+            - name: SECRET_KEY
+              value: {{ .Values.env.SECRET_KEY | quote }}
+            - name: DATABASE_PATH
+              value: {{ .Values.env.DATABASE_PATH | quote }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "webhook-app.fullname" . }}-pvc
