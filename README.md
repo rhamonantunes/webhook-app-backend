@@ -18,3 +18,4 @@ Ideal para testes, debugging ou demonstrações de pipelines CI/CD, GitOps, GitH
 ---
 
 ## 🗂 Estrutura
+test
