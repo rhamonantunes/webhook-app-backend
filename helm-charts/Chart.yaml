@@ -1,5 +1,5 @@
 apiVersion: v2
-name: webhook-app
+name: webhook-app-backend
 version: 0.1.0
 description: Helm chart for Webhook App on OpenShift
 appVersion: "1.0"
