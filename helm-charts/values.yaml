@@ -1,22 +1,17 @@
 replicaCount: 1
-
 image:
   repository: image-registry.openshift-image-registry.svc:5000/webhook-app/backend
   tag: latest
   pullPolicy: Always
-
 env:
   SECRET_KEY: "change-me"
   DATABASE_PATH: "/data/events.db"
-
 service:
   type: ClusterIP
   port: 5000
-
 route:
   enabled: true
   host: ""
-
 pvc:
   size: 1Gi
   storageClass: "ocs-storagecluster-ceph-rbd"
