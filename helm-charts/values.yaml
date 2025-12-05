@@ -14,4 +14,4 @@ route:
   host: ""
 pvc:
   size: 1Gi
-  storageClass: "gp3-csi"
+  storageClass: "ocs-storagecluster-ceph-rbd"
